@@ -86,7 +86,8 @@ namespace Theme_3.Библиотекарь
             ArrayList foundBooks = new ArrayList();
             foreach(Books b in books)
             {
-                if (b.Name == name)
+                //if (b.Name == name)
+                if (b.Name.Contains(name))////////////изменение на contains
                 {
                     Console.WriteLine("---------------------------");
                     ShowParameters(b);
@@ -125,7 +126,7 @@ namespace Theme_3.Библиотекарь
                     bool found = false;
                     while (i<items.Count && !found)
                     {
-                        if (((Books)items[i]).Code == code)
+                        if (((Books)items[i]).Code == code) ///////неверная обработка случая если код не найден
                         {
                             found = true;
                             item = (Books)items[i];
@@ -198,15 +199,19 @@ namespace Theme_3.Библиотекарь
         public void DeleteItem(string name)
         {
             Books book = ShowItem(name);
-            string str;
-            Console.WriteLine("Вы уверены, что хотите удалить эту книгу? (-y/-n)");
-            do
+            if (book != null)
             {
-                str = Console.ReadLine();
-            } while (str != "-y" && str != "-n");
-            if (str == "-y") {
-                books.Remove(book);
-                Console.WriteLine("Книга удалена");
+                string str;
+                Console.WriteLine("Вы уверены, что хотите удалить эту книгу? (-y/-n)");
+                do
+                {
+                    str = Console.ReadLine();
+                } while (str != "-y" && str != "-n");
+                if (str == "-y")
+                {
+                    books.Remove(book);
+                    Console.WriteLine("Книга удалена");
+                }
             }
         }
         public override void ReadFromFile()

@@ -61,7 +61,7 @@ namespace Theme_3.Библиотекарь
                 CurrentCommand = Console.ReadLine();
                 cmd= CurrentCommand;
             } while (cmd != "-book" && cmd != "-journal" && cmd != "-change" &&
-                cmd != "-search" && cmd != "-delete" && cmd != "-end");
+                cmd != "-search" && cmd != "-delete" && cmd != "-end");////ДОБАВИТЬ В СПИСОК -help
         }
         public static string BookOrJournal()
         {
