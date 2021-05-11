@@ -197,7 +197,7 @@ namespace Theme_3.Библиотекарь
         {
             Journals journal = ShowItem(name);
             string str;
-            Console.WriteLine("Вы уверены, что хотите удалить эту книгу? (-y/-n)");
+            Console.WriteLine("Вы уверены, что хотите удалить этот журнал? (-y/-n)");
             do
             {
                 str = Console.ReadLine();
