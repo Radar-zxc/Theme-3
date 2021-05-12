@@ -21,56 +21,42 @@ namespace Theme_3.Библиотекарь
             Console.WriteLine(journal.SerialNumber);
             Console.WriteLine("---------------------------");
         }
-        public override void AddItem()
+        public void AddItem()
         {
-            bool res = false;
-            do
+            Journals journal = new Journals()
             {
-                try
+                Name = Console.ReadLine(),
+                Year = IntInput(),
+                Publisher = Console.ReadLine(),
+                Count = IntInput(),
+                Period = Console.ReadLine(),
+                SerialNumber = IntInput(),
+            };
+            int indexCopy = CheckCopy(journal);
+            if (indexCopy == -1)
+            {
+                journals.Add(journal);
+                journal.Code = count++;
+                Console.WriteLine("Новая запись создана" + '\n');
+            }
+            else
+            {
+                if (CopyVerify())
                 {
-                    string str = Console.ReadLine();
-                    string[] str1 = str.Split();
-                    Journals journal = new Journals()
-                    {
-                        Name = str1[0],
-                        Year = Int32.Parse(str1[1]),
-                        Publisher = str1[2],
-                        Count = Int32.Parse(str1[3]),
-                        Period = str1[4],
-                        SerialNumber = Int32.Parse(str1[5]),
-                    };
-                    int indexCopy = CheckCopy(journal);
-                    if (indexCopy ==-1)
-                    {
-                        journals.Add(journal);
-                        journal.Code = count++;
-                        Console.WriteLine("Новая запись создана" + '\n');
-                    }
-                    else
-                    {
-                        if (CopyVerify())
-                        {
-                            journals.Add(journal);
-                            journal.Code = count++;
-                            Console.WriteLine("Новая запись создана" + '\n');
-                        }
-                        else
-                        {
-                            Console.WriteLine("Добавить количество к первой существующей записи? (-y/-n)");
-                            if (YN_Verify()) 
-                            {
-                                ((Journals)journals[indexCopy]).Count += journal.Count;
-                                Console.WriteLine("Количество успешно добавлено" + '\n');
-                            }
-                        }
-                    }
-                    res = true;
+                    journals.Add(journal);
+                    journal.Code = count++;
+                    Console.WriteLine("Новая запись создана" + '\n');
                 }
-                catch
+                else
                 {
-                    Console.WriteLine("Ошибка ввода, повторите попытку");
+                    Console.WriteLine("Добавить количество к первой существующей записи? (-y/-n)");
+                    if (YN_Verify())
+                    {
+                        ((Journals)journals[indexCopy]).Count += journal.Count;
+                        Console.WriteLine("Количество успешно добавлено" + '\n');
+                    }
                 }
-            } while (!res);
+            }
         }
         public int CheckCopy(Journals j)
         {
@@ -96,9 +82,8 @@ namespace Theme_3.Библиотекарь
             ArrayList foundJournals = new ArrayList();
             foreach (Journals b in journals)
             {
-                if (b.Name == name)
+                if (b.Name.Contains(name))
                 {
-                    Console.WriteLine("---------------------------");
                     ShowParameters(b);
                     i++;
                     foundJournals.Add(b);
@@ -121,18 +106,23 @@ namespace Theme_3.Библиотекарь
                     break;
                 default:
                     Console.Write("Введите код нужного журнала: ");
-                    code = IntInput();
-                    int i = 0;
                     bool found = false;
-                    while (i < items.Count && !found)
+                    do
                     {
-                        if (((Journals)items[i]).Code == code)
+                        code = IntInput();
+                        for (int i = 0; i < items.Count && !found; i++)
                         {
-                            found = true;
-                            item = (Journals)items[i];
+                            if (((Journals)items[i]).Code == code)
+                            {
+                                found = true;
+                                item = (Journals)items[i];
+                            }
                         }
-                        i++;
-                    }
+                        if (found == false)
+                        {
+                            Console.WriteLine("Журнала с таким кодом нет в списке, повторите ввод");
+                        }
+                    } while (found == false);
                     ShowParameters(item);
                     break;
             }
@@ -196,24 +186,20 @@ namespace Theme_3.Библиотекарь
         public void DeleteItem(string name)
         {
             Journals journal = ShowItem(name);
-            string str;
-            Console.WriteLine("Вы уверены, что хотите удалить этот журнал? (-y/-n)");
-            do
+            if (journal != null)
             {
-                str = Console.ReadLine();
-            } while (str != "-y" && str != "-n");
-            if (str == "-y") { 
-                journals.Remove(journal);
-                Console.WriteLine("Журнал удален");
+                string str;
+                Console.WriteLine("Вы уверены, что хотите удалить этот журнал? (-y/-n)");
+                do
+                {
+                    str = Console.ReadLine();
+                } while (str != "-y" && str != "-n");
+                if (str == "-y")
+                {
+                    journals.Remove(journal);
+                    Console.WriteLine("Журнал удален");
+                }
             }
-        }
-        public override void ReadFromFile()
-        {
-
-        }
-        public override void ReadFromDataBase()
-        {
-
         }
     }
 }

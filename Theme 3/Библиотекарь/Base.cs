@@ -12,11 +12,9 @@ namespace Theme_3.Библиотекарь
         public int Year { get; set; }
         public string Publisher { get; set; }
         public int Count { get; set; }
-        public virtual void AddItem() {
-
-        }
         public virtual void ShowParameters(Base b)
         {
+            Console.WriteLine("---------------------------");
             Console.Write("Код        ");
             Console.WriteLine(b.Code);
             Console.Write("Имя        ");
@@ -39,7 +37,7 @@ namespace Theme_3.Библиотекарь
             bool check = Int32.TryParse(Console.ReadLine(), out x);
             while (!check)
             {
-                Console.WriteLine("Неверный формат ввода , повторите попытку");
+                Console.WriteLine("Неверный формат ввода, повторите попытку");
                 check = Int32.TryParse(Console.ReadLine(), out x);
             }
             return x;
@@ -66,14 +64,6 @@ namespace Theme_3.Библиотекарь
         {
             Console.WriteLine("Данный предмет уже есть в списке, создать для него новую запись? (-y/-n)");
             return YN_Verify();
-        }
-        public virtual void ReadFromFile()
-        {
-
-        }
-        public virtual void ReadFromDataBase()
-        {
-
         }
     }
 }

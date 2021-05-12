@@ -11,56 +11,42 @@ namespace Theme_3.Библиотекарь
         public static int count = 0;
         public string Author { get; set; }
         public string Genre { get; set; }
-        public override void AddItem()
+        public void AddItem()
         {
-            bool res = false;
-            do
+            Books book = new Books()
             {
-                try
+                Name = Console.ReadLine(),
+                Year = IntInput(),
+                Publisher = Console.ReadLine(),
+                Count = IntInput(),
+                Author = Console.ReadLine(),
+                Genre = Console.ReadLine(),
+            };
+            int indexCopy = CheckCopy(book);
+            if (indexCopy == -1)
+            {
+                books.Add(book);
+                book.Code = count++;
+                Console.WriteLine("Новая запись создана" + '\n');
+            }
+            else
+            {
+                if (CopyVerify())
                 {
-                    string str = Console.ReadLine();
-                    string[] str1 = str.Split();
-                    Books book = new Books()
-                    {
-                        Name = str1[0],
-                        Year = Int32.Parse(str1[1]),
-                        Publisher = str1[2],
-                        Count = Int32.Parse(str1[3]),
-                        Author = str1[4],
-                        Genre = str1[5],
-                    };
-                    int indexCopy = CheckCopy(book);
-                    if (indexCopy == -1)
-                    {
-                        books.Add(book);
-                        book.Code = count++;
-                        Console.WriteLine("Новая запись создана"+'\n');
-                    }
-                    else
-                    {
-                        if (CopyVerify())
-                        {
-                            books.Add(book);
-                            book.Code = count++;
-                            Console.WriteLine("Новая запись создана" + '\n');
-                        }
-                        else
-                        {
-                            Console.WriteLine("Добавить количество к первой существующей записи? (-y/-n)");
-                            if (YN_Verify())
-                            {
-                                ((Books)books[indexCopy]).Count += book.Count;
-                                Console.WriteLine("Количество успешно добавлено"+'\n');
-                            }
-                        }
-                    }
-                    res = true;
+                    books.Add(book);
+                    book.Code = count++;
+                    Console.WriteLine("Новая запись создана" + '\n');
                 }
-                catch
+                else
                 {
-                    Console.WriteLine("Ошибка ввода, повторите попытку");
+                    Console.WriteLine("Добавить количество к первой существующей записи? (-y/-n)");
+                    if (YN_Verify())
+                    {
+                        ((Books)books[indexCopy]).Count += book.Count;
+                        Console.WriteLine("Количество успешно добавлено" + '\n');
+                    }
                 }
-            } while (!res);
+            }
         }
         public int CheckCopy(Books j)
         {
@@ -86,10 +72,8 @@ namespace Theme_3.Библиотекарь
             ArrayList foundBooks = new ArrayList();
             foreach(Books b in books)
             {
-                //if (b.Name == name)
-                if (b.Name.Contains(name))////////////изменение на contains
+                if (b.Name.Contains(name))
                 {
-                    Console.WriteLine("---------------------------");
                     ShowParameters(b);
                     i++;
                     foundBooks.Add(b);
@@ -121,18 +105,23 @@ namespace Theme_3.Библиотекарь
                     break;
                 default:
                     Console.Write("Введите код нужной книги: ");
-                    code = IntInput();
-                    int i = 0;
-                    bool found = false;
-                    while (i<items.Count && !found)
+                    bool found =false;
+                    do
                     {
-                        if (((Books)items[i]).Code == code) ///////неверная обработка случая если код не найден
+                        code = IntInput();
+                        for (int i = 0; i < items.Count && !found; i++)
                         {
-                            found = true;
-                            item = (Books)items[i];
+                            if (((Books)items[i]).Code== code)
+                            {
+                                found = true;
+                                item = (Books)items[i];
+                            }
                         }
-                        i++;
-                    }
+                        if (found == false)
+                        {
+                            Console.WriteLine("Книги с таким кодом нет в списке, повторите ввод");
+                        }
+                    } while (found == false);
                     ShowParameters(item);
                     break;
             }
@@ -213,14 +202,6 @@ namespace Theme_3.Библиотекарь
                     Console.WriteLine("Книга удалена");
                 }
             }
-        }
-        public override void ReadFromFile()
-        {
-
-        }
-        public override void ReadFromDataBase()
-        {
-
         }
     }
 }

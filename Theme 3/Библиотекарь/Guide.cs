@@ -15,17 +15,18 @@ namespace Theme_3.Библиотекарь
             Console.WriteLine("Изменение параметров позиции: -change");
             Console.WriteLine("Поиск позиции по названию и ее вывод на экран: -search");
             Console.WriteLine("Удаление существующей позиции: -delete");
+            Console.WriteLine("Справка: -help");
             Console.WriteLine("Завершение работы: -end");
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~"+'\n');
         }
         public static void MessageNewBook()
         {
-            Console.WriteLine("Введите информацию о книге через пробел: " +
+            Console.WriteLine("Введите параметры книги каждый в новой строке: " +
                 "Название ГодВыпуска Издатель Количество Автор Жанр" );
         }
         public static void MessageNewJournal()
         {
-            Console.WriteLine("Введите информацию о журнале через пробел: " +
+            Console.WriteLine("Введите параметры журнала каждый в новой строке: " +
                 "Название ГодВыпуска Издатель Количество Периодичность Номер");
         }
         public static void SearchBook()
@@ -61,7 +62,7 @@ namespace Theme_3.Библиотекарь
                 CurrentCommand = Console.ReadLine();
                 cmd= CurrentCommand;
             } while (cmd != "-book" && cmd != "-journal" && cmd != "-change" &&
-                cmd != "-search" && cmd != "-delete" && cmd != "-end");////ДОБАВИТЬ В СПИСОК -help
+                cmd != "-search" && cmd != "-delete" && cmd != "-end" && cmd !="-help");
         }
         public static string BookOrJournal()
         {
@@ -85,10 +86,6 @@ namespace Theme_3.Библиотекарь
                     verify = true;
                 }
             }
-        }
-        public static void ChooseReadFormat()
-        {
-
         }
         public static void GetCommand()
         {

@@ -1,5 +1,4 @@
 ﻿using System;
-using output = System.Console;
 using Theme_3.Библиотекарь;
 namespace Theme_3
 {
@@ -7,93 +6,10 @@ namespace Theme_3
     {
         static void Main(string[] args)
         {
-;
             Guide.GetCommand();
-            /*Guide.MessageNewBook();
-            ((Books)b).AddItem();
-            ((Books)b).AddItem();
-            ((Books)b).ShowItem("sf");
-
-            */
-            /*Books book = new Books();
-            Guide.ShowCommands();
-            Guide.MessageNewBook();
-            book.AddNewBook();
-            book.Show();*/
-            /*
-            Console.WriteLine("Hello World!");
-            Auto audi = new Auto("Boris" , 100,50,2);
-            Auto bmw = new Auto();
-            output.WriteLine(Auto.GetCountAuto());
-            output.WriteLine(audi.Owner);
-            output.WriteLine(audi.MaxSpeed);
-            Console.WriteLine(audi.Price);
-            Console.WriteLine(audi.Weels);
-            Console.WriteLine("------------------");
-            Console.WriteLine(bmw.Owner);
-            Console.WriteLine(bmw.MaxSpeed);
-            Console.WriteLine(bmw.Price);
-            Console.WriteLine(bmw.Weels);
-            Console.WriteLine("------------------");
-            audi.MaxSpeed = 200;
-            audi.Price = 1000;
-            Console.WriteLine(audi.MaxSpeed);
-            Console.WriteLine(audi.Price);
-            Console.WriteLine(audi.Weels=6);
-            double mark = audi.GetMark();
-            Console.WriteLine(mark);
-            audi.ExpandAuto(123, 321, 2);
-            Console.WriteLine("------------------");
-            Console.WriteLine(audi.MaxSpeed);
-            Console.WriteLine(audi.Price);
-            Console.WriteLine(audi.Weels);
-            int ax = 4 , ay=5 , az=6;
-            Console.WriteLine($"{ax} {ay} {az}");
-            audi.RefExpandAuto(ref ax, ref ay, ref az);
-            Console.WriteLine($"{ax} {ay} {az}");
-            audi.OutExpandAuto(200,out int q , out int w , out int e );
-            Console.WriteLine("------------------");
-            Console.WriteLine($"{q} {w} {e}");
-            Console.WriteLine(audi.AutoSum(1, 2, 3, 4, 5, 6));
-            GC.Collect();
-            Console.WriteLine("------------------");
-            Object a = new Auto();
-            ((Auto)a).ExpandAuto(1, 2, 3);
-            //(Auto)a.ExpandAuto(1, 2, 3); // опечатка на 126 странице 
-            Console.WriteLine(audi.ToString());
-            Console.WriteLine(audi.Equals(a));
-            ToyCar b = new ToyCar();
-            b.Print(); //normal
-            Auto c = new ToyCar();
-            c.Print(); //override
-            b.Print1(); // base.
-            c.Print1(); // обращение к классу Auto сразу
-            Cactus cac = new Cactus();
-            cac.Draw();
-            Wood wood = new Palm();
-            wood.Draw();
-            wood = new Cactus();
-            wood.Draw();
-            Wood c1 = new Cactus()
-            {
-                area = "West",
-                smell = "Spicy",
-                color = "Cool",
-                ripe = false
-            };
-            Palm palm = new Palm()
-            {
-                area = "East",
-                color = "Coller",
-                heigth = 20
-            };
-            Console.WriteLine(c1.area + c1.color + ((Cactus)c1).smell ); // c1.smell нельзя просто получить свойство наследника , но можно присвоить
-            Console.WriteLine(palm.area + palm.color + palm.heigth); // свойства наследника получить можно
-            Console.WriteLine("------------------");
-            ((Cactus)c1).PrintAttr();
-            */
         }
     }
+
     class Auto
     {
         static int countAuto=0;
