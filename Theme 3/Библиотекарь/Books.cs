@@ -152,39 +152,43 @@ namespace Theme_3.Библиотекарь
                     switch (str)
                     {
                         case "-name":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             book.Name = Console.ReadLine();
                             break;
                         case "-year":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             book.Year = IntInput();
                             break;
                         case "-publisher":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             book.Publisher=Console.ReadLine();
                             break;
                         case "-count":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             book.Count = IntInput();
                             break;
                         case "-author":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             book.Author= Console.ReadLine();
                             break;
                         case "-genre":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             book.Genre = Console.ReadLine();
                             break;
                         case "":
                             break;
                         default:
-                            Guide.CommandVerify();
+                            Console.WriteLine("Введена неизвестная команда");
                             break;
                     }
                     do
                     {
                         Console.WriteLine("Завершить изменения (-y/-n) ? ");
                         str = Console.ReadLine();
+                        if (str != "-y" && str != "-n")
+                        {
+                            Console.WriteLine("Введена неизвестная команда, повторите ввод");
+                        }
                     } while (str != "-y" && str != "-n");
                     if (str == "-y")
                     {
@@ -192,7 +196,6 @@ namespace Theme_3.Библиотекарь
                     }
                 } while (!away);
             }
-            
         }
         public void DeleteItem(string name)
         {
@@ -204,6 +207,10 @@ namespace Theme_3.Библиотекарь
                 do
                 {
                     str = Console.ReadLine();
+                    if (str != "-y" && str != "-n")
+                    {
+                        Console.WriteLine("Введена неизвестная команда, повторите ввод");
+                    }
                 } while (str != "-y" && str != "-n");
                 if (str == "-y")
                 {

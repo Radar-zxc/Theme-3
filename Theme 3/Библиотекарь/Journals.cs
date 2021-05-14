@@ -153,37 +153,41 @@ namespace Theme_3.Библиотекарь
                     switch (str)
                     {
                         case "-name":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             journal.Name = Console.ReadLine();
                             break;
                         case "-year":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             journal.Year = IntInput();
                             break;
                         case "-publisher":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             journal.Publisher = Console.ReadLine();
                             break;
                         case "-count":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             journal.Count = IntInput();
                             break;
                         case "-period":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             journal.Period = Console.ReadLine();
                             break;
                         case "-serial_number":
-                            Console.Write("Введите новое значение для параметра: ");
+                            Console.Write("Введите новое значение для параметра, после чего нажмите клавишу Enter: ");
                             journal.SerialNumber = IntInput();
                             break;
                         default:
-                            Guide.CommandVerify();
+                            Console.WriteLine("Введена неизвестная команда");
                             break;
                     }
                     do
                     {
                         Console.WriteLine("Завершить изменения (-y/-n) ? ");
                         str = Console.ReadLine();
+                        if (str != "-y" && str != "-n")
+                        {
+                            Console.WriteLine("Введена неизвестная команда, повторите ввод");
+                        }
                     } while (str != "-y" && str != "-n");
                     if (str == "-y")
                     {
@@ -202,6 +206,10 @@ namespace Theme_3.Библиотекарь
                 do
                 {
                     str = Console.ReadLine();
+                    if (str != "-y" && str != "-n")
+                    {
+                        Console.WriteLine("Введена неизвестная команда, повторите ввод");
+                    }
                 } while (str != "-y" && str != "-n");
                 if (str == "-y")
                 {

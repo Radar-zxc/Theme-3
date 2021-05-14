@@ -60,7 +60,7 @@ namespace Theme_3.Библиотекарь
             string cmd;
             do
             {
-                Console.WriteLine("Неверный формат ввода, повторите попытку");
+                Console.WriteLine("Введена неизвестная команда, повторите попытку");
                 CurrentCommand = Console.ReadLine();
                 cmd= CurrentCommand;
             } while (cmd != "-book" && cmd != "-journal" && cmd != "-change" &&
@@ -81,7 +81,7 @@ namespace Theme_3.Библиотекарь
             bool verify = false;
             while (!verify)
             {
-                Console.WriteLine("Введена неверная команда, повторите ввод");
+                Console.WriteLine("Введена неизвестная команда, повторите ввод");
                 CurrentCommand = Console.ReadLine();
                 if (CurrentCommand == "-book" || CurrentCommand == "-journal")
                 {
