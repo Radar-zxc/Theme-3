@@ -37,7 +37,7 @@ namespace Theme_3.Библиотекарь
             bool check = Int32.TryParse(Console.ReadLine(), out x);
             while (!check)
             {
-                Console.WriteLine("Неверный формат ввода, повторите попытку");
+                Console.WriteLine("Неверный формат ввода, необходимо целое число, повторите попытку");
                 check = Int32.TryParse(Console.ReadLine(), out x);
             }
             return x;

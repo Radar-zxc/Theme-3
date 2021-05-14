@@ -23,15 +23,7 @@ namespace Theme_3.Библиотекарь
         }
         public void AddItem()
         {
-            Journals journal = new Journals()
-            {
-                Name = Console.ReadLine(),
-                Year = IntInput(),
-                Publisher = Console.ReadLine(),
-                Count = IntInput(),
-                Period = Console.ReadLine(),
-                SerialNumber = IntInput(),
-            };
+            Journals journal = ReadParameters();
             int indexCopy = CheckCopy(journal);
             if (indexCopy == -1)
             {
@@ -57,6 +49,23 @@ namespace Theme_3.Библиотекарь
                     }
                 }
             }
+        }
+        public Journals ReadParameters()
+        {
+            Journals journal = new Journals();
+            Console.Write("Введите название журнала: ");
+            journal.Name = Console.ReadLine();
+            Console.Write("Введите год издания журнала: ");
+            journal.Year = IntInput();
+            Console.Write("Введите издателя журнала: ");
+            journal.Publisher = Console.ReadLine(); ;
+            Console.Write("Введите количество журналов: ");
+            journal.Count = IntInput();
+            Console.Write("Введите периодичность журнала: ");
+            journal.Period = Console.ReadLine();
+            Console.Write("Введите номер журнала: ");
+            journal.SerialNumber = IntInput();
+            return journal;
         }
         public int CheckCopy(Journals j)
         {

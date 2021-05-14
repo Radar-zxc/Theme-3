@@ -13,15 +13,7 @@ namespace Theme_3.Библиотекарь
         public string Genre { get; set; }
         public void AddItem()
         {
-            Books book = new Books()
-            {
-                Name = Console.ReadLine(),
-                Year = IntInput(),
-                Publisher = Console.ReadLine(),
-                Count = IntInput(),
-                Author = Console.ReadLine(),
-                Genre = Console.ReadLine(),
-            };
+            Books book = ReadParemeters();
             int indexCopy = CheckCopy(book);
             if (indexCopy == -1)
             {
@@ -47,6 +39,23 @@ namespace Theme_3.Библиотекарь
                     }
                 }
             }
+        }
+        public Books ReadParemeters()
+        {
+            Books book = new Books();
+            Console.Write("Введите название книги: ");
+            book.Name = Console.ReadLine();
+            Console.Write("Введите год издания книги: ");
+            book.Year = IntInput();
+            Console.Write("Введите издателя книги: ");
+            book.Publisher = Console.ReadLine(); ;
+            Console.Write("Введите количество книг: ");
+            book.Count = IntInput();
+            Console.Write("Введите имя автора книги: ");
+            book.Author = Console.ReadLine();
+            Console.Write("Введите жанр книги: ");
+            book.Genre = Console.ReadLine();
+            return book;
         }
         public int CheckCopy(Books j)
         {
